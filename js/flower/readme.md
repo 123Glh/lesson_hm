@@ -27,5 +27,5 @@
 - const 常量
 - === 恒等
 - js 数据类型
-  string number(不分float和integer) boolean object(array,function,{}) 
+  string number(不分float和integer) boolean object(array,function,{}) null undefined
 - 定时器 setTimeout(function(){},2000)
