@@ -1,4 +1,5 @@
 // 递归
+//时间复杂度：O(logN)
 function fun1(x, n) {
   // 退出条件
   if (n === 0) {

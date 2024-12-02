@@ -1,5 +1,6 @@
 //求x的n次方
 // 快速幂算法:
+// 时间复杂度：O(logn)
 function func(x, n) {
   if (n === 0) {
     return 1
