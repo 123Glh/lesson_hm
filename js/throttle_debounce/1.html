@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索小助手</title>
+</head>
+
+<body>
+  <label for="searchBox">请输入要搜素的内容：</label>
+  <input type="text" id="searchBox" placeholder="开始你的搜索吧！">
+  <ul id="searchResults"></ul>
+
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const resultsList = document.querySelector('#searchResults');
+
+    function debounce(func, wait) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    function fetchSearchResults(query) {
+      // 这里可以添加对API的调用逻辑
+      console.log(`正在查询: ${query}`);
+      // 假设这里有一个异步请求...
+    }
+
+    const debouncedFetch = debounce(fetchSearchResults, 500);
+
+    searchBox.addEventListener('input', (event) => {
+      const query = event.target.value.trim();
+      if (query) {
+        debouncedFetch(query);
+      } else {
+        resultsList.innerHTML = ''; // 清空结果列表
+      }
+    });
+  </script>
+</body>
+
+</html>

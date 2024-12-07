@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "thq"
+    },
+    {
+      "id": "2",
+      "name": "xkw"
+    },
+    {
+      "id": "3",
+      "name": "wr"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "Api Fox 学习",
+      "content": "content1",
+      "userId": 1
+    }
+  ]
+}

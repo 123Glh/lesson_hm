@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <label for="unDebounceInput">用户搜索</label>
+  <input type="text" id="unDebounceInput" placeholder="请输入要搜素的用户名字">
+  <div>
+    <ul id="users"></ul>
+  </div>
+  <script>
+    const oUL = document.querySelector('#users')
+    // 通往后端接口
+    const oInput = document.getElementById('unDebounceInput')
+    //当作为事件的处理函数来用时，this 指向事件的目标元素
+    const debounceNameSearch = debounce(handleNameSearch, 500)
+    oInput.addEventListener('keyup', debounceNameSearch)
+    function handleNameSearch() {
+      //console.log('用户输入了' + this.value)
+      let value = oInput.value.trim()
+      if (!value) {
+        oUL.innerHTML = ""
+        return
+      }
+      fetch("http://localhost:3001/users")
+        .then(res => res.json())
+        .then(users => {
+          //console.log(users)
+          //箭头函数的优雅  +  filter 的新功能
+          const filerUsers = users.filter(
+            user => user.name.includes(value)
+          )
+          console.log(filerUsers)
+          //Array在es6 中新增了map方法
+          oUL.innerHTML = filerUsers.map(user =>
+            `
+            <li>
+              ${user.name}
+            </li>
+            `
+          ).join("")
+          // for (let user of filerUsers) {
+          //   const li = document.createElement('li')
+          //   li.innerText = user.name
+          //   oUL.appendChild(li)
+          // }
+          // console.log(filerUsers)
+        })
+    }
+    function debounce(fn, delay) {
+      let id = null
+      //  防抖
+      // 高阶函数
+      return function () {
+        //console.log("----")
+        // 限流？
+        clearTimeout(id)
+        id = setTimeout(() => {
+          fn()
+        }, delay)
+      }
+    }
+  </script>
+</body>
+
+</html>
