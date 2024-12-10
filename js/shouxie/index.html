@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var a = {
+      name: 'Cherry',
+      fn: function (a, b) {
+        console.log(this.name)
+        // a [1,2] + b undefined
+        // + 两边都是数字就是加法， 如果不是呢？ 
+        // 连接运算符 数组使用了toString() 变成了字符串   undefined是简单数据类型，没有toString()，使用了String() 变成了字符串 'undefined'
+        console.log(a + b)
+      }
+    }
+    //相当于 a.fn(1,2)
+    var b = a.fn;  // 普通函数
+    console.log(b);
+
+    // 指定this
+    // 立即执行
+    // 参数
+
+    //call 和 apply 区别
+    // 传参方式不同   call 一个一个传参(thisBinder,a,b,c...参数)  apply 一次性给，以数组的形式 (thisBinder,[a,b,c...参数])
+    // b.apply(a, [1, 2])
+    // b.call(a, 1, 2)
+    b.bind(a, 1, 2);
+  </script>
+</body>
+
+</html>
