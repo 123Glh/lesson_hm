@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStorage 示例</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .wrapper { margin: 20px auto; width: 300px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; }
+    ul { list-style-type: none; padding: 0; }
+    li { display: flex; align-items: center; padding: 5px 0; }
+    input[type="checkbox"] { margin-right: 10px; }
+    input[type="text"] { width: calc(100% - 60px); margin-right: 10px; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <h2>你的本地小吃清单</h2>
+  <ul id="tapasList"></ul>
+  <form id="addItemForm">
+    <input type="text" id="newItemInput" placeholder="添加新的小吃..." required>
+    <button type="submit">添加</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('addItemForm');
+  const itemList = document.getElementById('tapasList');
+
+  // 页面加载时从localStorage加载项目
+  function loadItems() {
+    let items = JSON.parse(localStorage.getItem('tapas')) || [];
+    renderItems(items);
+  }
+
+  // 在界面上渲染项目列表
+  function renderItems(items) {
+    itemList.innerHTML = '';
+    items.forEach((item, index) => {
+      let li = document.createElement('li');
+      li.innerHTML = `
+        <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleDone(${index})">
+        <span>${item.text}</span>
+        <button onclick="removeItem(${index})">移除</button>
+      `;
+      itemList.appendChild(li);
+    });
+  }
+
+  // 添加新项目到列表并保存到localStorage
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    let newItem = { text: document.getElementById('newItemInput').value.trim(), done: false };
+    let items = JSON.parse(localStorage.getItem('tapas')) || [];
+    items.push(newItem);
+    localStorage.setItem('tapas', JSON.stringify(items));
+    loadItems();
+    form.reset();
+  });
+
+  // 切换项目的完成状态
+  window.toggleDone = function(index) {
+    let items = JSON.parse(localStorage.getItem('tapas'));
+    if (items && items[index]) {
+      items[index].done = !items[index].done;
+      localStorage.setItem('tapas', JSON.stringify(items));
+      loadItems();
+    }
+  };
+
+  // 从列表中删除项目
+  window.removeItem = function(index) {
+    let items = JSON.parse(localStorage.getItem('tapas'));
+    if (items && items[index] !== undefined) {
+      items.splice(index, 1);
+      localStorage.setItem('tapas', JSON.stringify(items));
+      loadItems();
+    }
+  };
+
+  // 初始化时加载已存在的项目
+  loadItems();
+});
+</script>
+</body>
+</html>
