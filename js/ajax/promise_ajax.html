@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="memberList"></ul>
+
+  <script>
+    const oul = document.getElementById('memberList');
+    // 用ajax 拉取数据
+    const getJSON = function (url) {
+      return new Promise((reovle, promise) => {
+        setTimeout(() => {
+          reovle({ massage: 'ok' })
+        }, 3000)
+      })
+    }
+    // 基于promise
+    // fetch('https://api.github.com/orgs/lemoncode/members')
+    //   .then()
+    getJSON('https://api.github.com/orgs/lemoncode/members')
+      .then(date => {
+        console.log(date);
+      })
+  </script>
+</body>
+
+</html>
