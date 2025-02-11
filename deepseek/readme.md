@@ -93,3 +93,36 @@
   - 封装AI LLM接口
 
 - react 去 axios 向koa AI LLM接口发送请求
+
+- jsonp
+  js ajax/fetch cors
+  jsonp <srcipt src=""></srcipt>
+  callback({a:1})
+  callback
+
+  cors 后端方案？允许你跨域
+
+  服务器端设置响应头，告诉浏览器允许跨域访问
+  ctx.set 上下文 响应头
+  Access-Control-Allow-Origin
+  Access-Control-Allow-Methods
+  Access-Control-Allow-Headers
+  - options 预检请求 method 之一
+    温柔
+    跨域请求，会先发送一个options请求，看服务器是否允许跨域
+    被允许，才会发送真正的post请求
+  
+  前端
+
+- koa 服务，烤面筋
+  - 中间件函数 洋葱模型
+  - 有顺序
+  - 从下到上去执行
+
+- vue 和 react 区别
+  - vue v-model 双向绑定
+  - react 单向数据流 认为双向性能特别不好
+    单向 + 事件onChange
+  - vue 支持事件修饰符 api 友好
+  - react 手写
+  - 聊天历史分组功能
