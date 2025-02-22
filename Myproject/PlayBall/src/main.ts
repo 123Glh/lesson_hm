@@ -7,6 +7,7 @@ import '@/assets/icon.css'
 import { Toast } from 'vant';
 import 'wc-waterfall'
 import lazy from './directives/lazy.ts'
+import 'vant/lib/index.css'; // 必须导入
 
 const app = createApp(App)
 app.use(createPinia())
