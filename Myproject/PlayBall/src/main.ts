@@ -12,5 +12,5 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(Toast)
-app.directive('lazy', lazy);
+app.directive('lazy', lazy)
 app.mount('#app')

@@ -1,3 +1,4 @@
+// 通过 v-lazy 可以自动执行这里面的代码
 // directives/lazy.js
 import type { DirectiveBinding } from 'vue';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';

@@ -7,17 +7,22 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AIReply: typeof import('./src/components/AI/AIReply.vue')['default']
     PopularDestinationsCard: typeof import('./src/components/Home/PopularDestinationsCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShareTourTraceCard: typeof import('./src/components/Home/ShareTourTraceCard.vue')['default']
+    Start: typeof import('./src/components/Assistant/Start.vue')['default']
     TaBar: typeof import('./src/components/Home/TaBar.vue')['default']
     TarBar: typeof import('./src/components/Home/TarBar.vue')['default']
+    UserQuery: typeof import('./src/components/AI/UserQuery.vue')['default']
     VanBackTop: typeof import('vant/es')['BackTop']
     VanButton: typeof import('vant/es')['Button']
     VanCell: typeof import('vant/es')['Cell']
     VanIcon: typeof import('vant/es')['Icon']
     VanImage: typeof import('vant/es')['Image']
+    VanLoading: typeof import('vant/es')['Loading']
+    VanOverlay: typeof import('vant/es')['Overlay']
     VanPicker: typeof import('vant/es')['Picker']
     VanPopup: typeof import('vant/es')['Popup']
     VanSearch: typeof import('vant/es')['Search']
