@@ -74,21 +74,25 @@ type Message = {
 const STORAGE_KEY = 'chat_messages_v1';
 
 // ========== 工具函数 ==========
+// 初始化消息
 const getInitialMessage = (): Message[] => [
   { type: 'ai', content: '✨ 您好！我是您的AI助手，有什么可以帮您？' }
 ];
 
+// 消息格式校验
 const isValidMessage = (msg: any): msg is Message => {
   return typeof msg === 'object' &&
     ['user', 'ai'].includes(msg?.type) &&
     typeof msg?.content === 'string';
 };
 
+// 消息数组格式校验
 const isValidMessages = (data: any): data is Message[] => {
   return Array.isArray(data) && data.every(isValidMessage);
 };
 
 // ========== 存储方法 ==========
+// 从本地存储加载消息
 const loadMessages = (): Message[] => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -102,6 +106,7 @@ const loadMessages = (): Message[] => {
   }
 };
 
+// 保存消息到本地存储
 const saveMessages = () => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(messages.value));
@@ -118,6 +123,7 @@ const loading = ref(false);
 const messages = ref<Message[]>(loadMessages());
 
 // ========== 业务逻辑 ==========
+// 摁下回车发送消息
 const handleSubmit = async () => {
   if (!inputMessage.value.trim()) {
     showToast('请输入有效内容');
@@ -152,7 +158,7 @@ const handleSubmit = async () => {
       content: content || '暂时无法回答该问题',
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('请求出错:', error);
     showToast(error.message || '请求失败，请重试');
     messages.value.push({
