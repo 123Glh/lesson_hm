@@ -1,9 +1,10 @@
 // js 两种模块化方案 commonjs 和 es6 module
 // mvc
-const Koa = require('koa');
+import Koa from 'koa';
+// const Koa = require('koa');
 const app = new Koa();
-const fs = require('fs'); // node 文件模块 内置
-
+// const fs = require('fs'); // node 文件模块 内置
+import fs from 'fs';
 // 中间件
 const main = ctx => {
   // index.html 返回给用户

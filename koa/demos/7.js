@@ -9,8 +9,8 @@ const main = ctx => {
   // ctx.response.body = 'Hello World';
   // 抛出一个错误
   // ctx.throw(500)
-  ctx.status = 404;
-  ctx.body = '404';
+  ctx.status = 200;
+  ctx.body = 'ok';
 }
 app.use(route.get('/', main));
 app.use(route.get('/redirect', redirect));
