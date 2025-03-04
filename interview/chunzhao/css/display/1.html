@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 移除所有默认的 margin 和 padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 设置 body 的高度为视口高度，并启用 3D 视角 */
+    body {
+      height: 100vh;
+      perspective: 1000px;
+      /* 启用 3D 视角 */
+      overflow: hidden;
+      /* 防止滚动条出现 */
+    }
+
+    .contain {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dance {
+      animation: do 1s infinite;
+      color: red;
+      font-size: 100px;
+      transform-style: preserve-3d;
+      /* 保留 3D 变换 */
+    }
+
+    @keyframes do {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.5);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contain">
+    <h1 class="dance">我在跳动</h1> <!-- 修正未关闭的标签 -->
+  </div>
+</body>
+
+</html>

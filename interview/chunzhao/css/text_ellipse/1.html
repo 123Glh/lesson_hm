@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串阶段</title>
+  <style>
+    /* 
+      单行，overflow:hidden 
+      不能换行
+    */
+    .truncate {
+      width: 200px;
+      /* height: 20px; */
+      white-space: nowrap;
+      /* 禁止换行 */
+      overflow: hidden;
+      /* 超出部分隐藏 */
+      text-overflow: ellipsis;
+      /* 超出部分显示省略号 */
+      /* text-align: center; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="truncate">
+    这是一个很长的文本示例，他将被截断并用省略号显示
+  </div>
+</body>
+
+</html>
