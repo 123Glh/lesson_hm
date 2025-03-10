@@ -390,3 +390,23 @@ CREATE TABLE IF NOT EXISTS bill (
       - 路由
       - userinfo 组件
       - api   editUserInfo
+- bill CRUD
+  - sql 建表
+  - MVC
+    - model
+      - 使用 AI 生成 基于sql，使用 egg.js sequelize 生成 model 定义
+    - controller
+    - service
+      - app.model.Bill.create() 新增
+      - app.model.Bill.update({},{
+        where: {
+        }
+      })  修改
+      - app.model.Bill.destroy({
+        where: {
+        }
+      }) 删除
+    - router
+      restful
+      /bill post
+      /bill/:id  patch
