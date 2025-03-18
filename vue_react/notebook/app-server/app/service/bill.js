@@ -43,9 +43,20 @@ class BillService extends Service {
       console.log(err);
       return null;
     }
-  } catch(err) {
-    console.log(err);
-    return null;
+  }
+  async detail(params) {
+    const { ctx, app } = this;
+    try {
+      const result = await ctx.model.Bill.findOne({
+        where: {
+          id: params
+        }
+      })
+      return result;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
   }
 }
 module.exports = BillService;

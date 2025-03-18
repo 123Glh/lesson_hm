@@ -107,6 +107,7 @@ class UserController extends Controller {
       }
     }
   }
+  // 编辑签名
   async editSignature() {
     const { ctx } = this;
     console.log(ctx.user);

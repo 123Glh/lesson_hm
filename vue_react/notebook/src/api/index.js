@@ -14,3 +14,5 @@ export const getUserInfor = async () => await axios.get('/user/getUserInfo')
 export const updeteSignature = async (signature) => await axios.patch('/user/signature', {
   signature
 })
+
+export const getBillDetail = async (id) => await axios.get(`/bill/${id}`)

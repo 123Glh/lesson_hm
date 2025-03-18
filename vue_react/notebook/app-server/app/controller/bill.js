@@ -93,5 +93,24 @@ class BillController extends Controller {
       ctx.body = { code: 500, msg: '服务器内部错误' };
     }
   }
+  async detail() {
+    const { ctx, app } = this;
+    const { id } = ctx.params;
+    console.log(id);
+    if (!id) {
+      ctx.body = {
+        code: 400,
+        msg: '参数不齐全'
+      }
+      return;
+    }
+    try {
+      const result = await ctx.service.bill.detail(id);
+      ctx.body = { code: 200, msg: '获取成功', data: result };
+    } catch (err) {
+      console.log(err);
+      ctx.body = { code: 500, msg: '服务器内部错误' };
+    }
+  }
 }
 module.exports = BillController;

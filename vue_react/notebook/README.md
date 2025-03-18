@@ -410,3 +410,18 @@ CREATE TABLE IF NOT EXISTS bill (
       restful
       /bill post
       /bill/:id  patch
+- 订单详情页全栈开发
+  - 后端接口
+    1. restful 添加路由
+       GET /bill/:id
+    2. 控制器
+       detail
+       paras id
+    3. service
+       id -> bill
+    4. 返回数据，完成接口
+
+    - 前端开发
+    1. 路由
+    2. uselocation + query-string id
+       npm 包 query-string
