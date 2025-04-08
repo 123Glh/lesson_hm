@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Cross-Origin</title>
+</head>
+
+<body>
+  <button id="btn">Send</button>
+  <script>
+    // html5 websocket 新特性 双向通信
+    // http://   ws://
+    // websocket 不受同源策略影响
+    const ws = new WebSocket('ws://localhost:8080/ws');
+    ws.onopen = function () {
+      console.log('Connected');
+      ws.send('Hello World from client');
+    }
+    ws.onmessage = event => {
+      console.log(`message from server: ${event.data}`);
+    }
+    document.querySelector('#btn').onclick = () => {
+      ws.send('Hello World from client');
+    }
+  </script>
+</body>
+
+</html>

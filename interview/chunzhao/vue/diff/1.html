@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li id="one">1</li>
+    <li id="tow">2</li>
+  </ul>
+  <script>
+    const ul = document.querySelector('ul');
+    const one = document.querySelector('#one');
+    const tow = document.querySelector('#tow');
+    console.log(tow.nextSibling);
+    // 简单 diff  key 找到可以复用的节点 移动
+    setTimeout(() => {
+      ul.insertBefore(one, tow.nextSibling); // 将 one 移动到 tow 后面
+    }, 5000)
+  </script>
+</body>
+
+</html>

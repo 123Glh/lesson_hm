@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 箭头函数 的 this 指向
+    // this.a = 1;  // 挂载在全局上的属性 可以通过 window.a 访问
+    var a = 1;  // 变量
+    const jian = {
+      a: 1,
+      b: 2,
+      fn: () => {
+        console.log(this.a);
+      }
+    }
+    jian.fn(); // 在node 环境中 输出 undefined 在浏览器中输出 1
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // baseURL
+    // 请求拦截
+    // 响应拦截
+    // 发送请求
+    // es6 默认值 + 解构赋值
+    // config 对象
+    function simpleAxios({ baseURL = '' } = {}) {
+      // console.log(baseURL);
+      // 拦截器
+      const interceptors = {
+        // 请求前拦截器数组 callback
+        // A B C 执行掉？ 顺序 promise.then 返回值？ 后一个的输入
+        // reduce 通过多个拦截器，只为接下来的一次请求
+        request: [],
+        response: []
+      }
+      function useRequestInterceptor(interceptor) {
+        // console.log(interceptor);
+        interceptors.request.push(interceptor)
+      }
+      function executeInterceptors(interceptors, config) {
+        // 请求前
+        // console.log(config);
+        return interceptors.reduce((chain, interceptor) => {
+          return chain.then(interceptor)
+        }, Promise.resolve(config))
+      }
+      return {
+        get(url) {
+          return this.sendRequest('GET', `${baseURL}${url}`)
+        },
+        post(url, data) {
+          return this.sendRequest('POST', `${baseURL}${url}`, data)
+        },
+        useRequestInterceptor,
+        sendRequest(method, url, data = null) {
+          return executeInterceptors(interceptors.request, { method, url, data })
+            .then(({ method, data, url }) => new Promise((resolve, reject) => {
+              // 拦截器已经执行了
+              // console.log(method, data, url);
+              const xhr = new XMLHttpRequest()
+              xhr.open(method, url, true)   // 异步 || 同步
+              if (method === 'POST') {
+                xhr.setRequestHeader('Content-Type', 'application/json')
+                xhr.send(JSON.stringify(data))
+              }
+              xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) { // 4 请求完成
+                  if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(JSON.parse(xhr.response))
+                  } else {
+                    reject(new Error(xhr.status))
+                  }
+                }
+              }
+              xhr.send(JSON.stringify(data))
+            }))
+        }
+      }
+    }
+    // 全栈 dev http://localhost:3000/ 前后端分离
+    // 后端 真正跑通接口 product: http://www.taobao.com/api
+    const axios = simpleAxios({
+      baseURL: 'https://api.github.com'
+      // baseURL:
+      //   process.env == dev ? 'http://localhost:3000' : 'https://api.github.com'
+    })
+    axios.useRequestInterceptor(config => {
+      console.log('Request Interceptors', config);
+      return config
+    })
+    axios.useRequestInterceptor(config => {
+      console.log('Request Interceptors 22222222222', config);
+      return config
+    })
+    axios
+      .get('/users/123Glh')
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function greet() {
+      console.log('Hello, ' + this.name);
+    }
+
+    name = 'Global'; // 在全局环境中定义一个全局变量
+
+    // 调用函数，此时函数被独立调用 this指向全局
+    greet(); // 输出: Hello, John
+  </script>
+</body>
+
+</html>

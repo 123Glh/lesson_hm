@@ -8,7 +8,7 @@ function mySetInterVal(fn, a, b) {
   this.start = () => {  // 箭头函数的this指向是固定的，指向定义时的this
     this.handle = setTimeout(() => {    // 这里的this指向的是window
       console.log(this.a + this.b * this.time);
-      console.log(this);
+      // console.log(this);
       fn();
       this.time++;
       this.start();

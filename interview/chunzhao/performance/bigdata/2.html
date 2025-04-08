@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+    let ul = document.getElementById('container');
+    let total = 100000;
+    let once = 20;
+    let page = total / once;
+    let index = 0;
+    function loop(curTotal, curIndex) { // curTotal 剩余的数量 curIndex 起始的索引
+      if (curTotal <= 0) {
+        return;
+      }
+      let pageCounter = Math.min(curTotal, once); // 一次循环的数量
+      setTimeout(() => {
+        for (let i = 0; i < pageCounter; i++) {
+          let li = document.createElement('li');
+          li.innerText = i + curIndex;
+          ul.appendChild(li);
+        }
+        loop(curTotal - pageCounter, curIndex + pageCounter);
+      }, 0)
+    }
+    loop(total, index);
+  </script>
+</body>
+
+</html>

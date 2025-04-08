@@ -53,5 +53,4 @@ export function trigger(target, type, key) {
     effect();
   })
   // console.log(111111);
-
 }
